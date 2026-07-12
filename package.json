@@ -1,0 +1,9 @@
+{
+  "name": "physchem-for-humanity",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"dev":"astro dev","build":"astro check && astro build","preview":"astro preview"},
+  "dependencies": {"@astrojs/mdx":"latest","@astrojs/react":"latest","astro":"latest","react":"latest","react-dom":"latest"},
+  "devDependencies": {"@astrojs/check":"latest","@types/react":"latest","@types/react-dom":"latest","typescript":"latest"}
+}

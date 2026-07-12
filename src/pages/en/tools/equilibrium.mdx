@@ -1,0 +1,9 @@
+---
+layout: ../../../layouts/BaseLayout.astro
+title: Thermodynamic Equilibrium Calculator | PhysChem for Humanity
+description: Calculate Gibbs energy and equilibrium constants from standard enthalpy, entropy and temperature.
+lang: en
+---
+import EquilibriumCalculator from '../../../components/EquilibriumCalculator';
+
+<main className="tool-page"><p className="eyebrow">TOOL 001 · CHEMICAL THERMODYNAMICS</p><h1>Thermodynamic equilibrium calculator</h1><p className="lead">Calculate ΔG° and K from ΔH°, ΔS° and temperature. The calculation is performed locally in your browser.</p><EquilibriumCalculator client:load lang="en"/><section className="method"><h2>Method</h2><p>The tool uses <code>ΔG° = ΔH° − TΔS°</code> and <code>K = exp(−ΔG°/RT)</code>, with R = 8.31446261815324 J mol⁻¹ K⁻¹. It is suitable for education and preliminary analysis when ΔH° and ΔS° can be treated as temperature-independent.</p><h2>Scientific caution</h2><p>For accurate work over wide temperature ranges, include heat-capacity corrections. For non-ideal mixtures, replace concentrations or partial pressures with activities or fugacities.</p></section></main>
