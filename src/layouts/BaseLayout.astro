@@ -1,8 +1,12 @@
 ---
 import '../styles/global.css';
-interface Props { title: string; description: string; lang: 'en' | 'ru'; }
-const { title, description, lang } = Astro.props;
-const other = lang === 'en' ? Astro.url.pathname.replace(/^\/en/, '/ru') : Astro.url.pathname.replace(/^\/ru/, '/en');
+const lang = Astro.url.pathname.includes('/ru/') ? 'ru' : 'en';
+const isTool = Astro.url.pathname.includes('/tools/equilibrium');
+const title = isTool ? (lang === 'ru' ? 'Калькулятор термодинамического равновесия | PhysChem for Humanity' : 'Thermodynamic Equilibrium Calculator | PhysChem for Humanity') : (lang === 'ru' ? 'PhysChem for Humanity — открытая физическая химия' : 'PhysChem for Humanity');
+const description = lang === 'ru' ? 'Открытые знания и вычислительные инструменты по физической химии.' : 'Open physical chemistry knowledge and computational tools for human progress.';
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const home = `${base}${lang}/`;
+const other = Astro.url.pathname.includes('/en/') ? Astro.url.pathname.replace('/en/', '/ru/') : Astro.url.pathname.replace('/ru/', '/en/');
 ---
 <!doctype html><html lang={lang}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content={description}/><title>{title}</title></head>
-<body><header><a class="brand" href={`/${lang}/`}>PhysChem <em>for Humanity</em></a><nav><a href={`/${lang}/#mission`}>{lang==='ru'?'Миссия':'Mission'}</a><a href={`/${lang}/tools/equilibrium`}>{lang==='ru'?'Инструменты':'Tools'}</a><a href={`/${lang}/#knowledge`}>{lang==='ru'?'Знания':'Knowledge'}</a></nav><a class="lang" href={other}>{lang==='ru'?'EN':'RU'}</a></header><slot/><footer><strong>PhysChem for Humanity</strong><span>{lang==='ru'?'Открытые знания и вычислительные инструменты для прогресса человечества.':'Open knowledge and computational tools for human progress.'}</span><small>MIT · CC BY 4.0 · 2026</small></footer></body></html>
+<body><header><a class="brand" href={home}>PhysChem <em>for Humanity</em></a><nav><a href={`${home}#mission`}>{lang==='ru'?'Миссия':'Mission'}</a><a href={`${home}tools/equilibrium`}>{lang==='ru'?'Инструменты':'Tools'}</a><a href={`${home}#knowledge`}>{lang==='ru'?'Знания':'Knowledge'}</a></nav><a class="lang" href={other}>{lang==='ru'?'EN':'RU'}</a></header><slot/><footer><strong>PhysChem for Humanity</strong><span>{lang==='ru'?'Открытые знания и вычислительные инструменты для прогресса человечества.':'Open knowledge and computational tools for human progress.'}</span><small>MIT · CC BY 4.0 · 2026</small></footer></body></html>
